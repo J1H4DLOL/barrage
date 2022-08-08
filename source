@@ -1,0 +1,63 @@
+local function CreateSound(ID)
+	local Sound = Instance.new("Sound")
+	Sound.Parent = game.Players.LocalPlayer.StarterPlaylist
+	Sound.Volume = 2
+	Sound.Playing = true
+	Sound.Looped = false
+	Sound.SoundId = "rbxassetid://"..ID 
+	Sound.Name = "sfx"
+end
+function talk(msg)
+	local A_1 =  {
+		[1] = getrenv()._G.Pass, 
+		[2] = "Chatted", 
+		[3] = msg,
+		[4] = Color3.fromRGB(255, 128, 1)
+	}
+	local Event = game:GetService("ReplicatedStorage").Remotes.Events
+	Event:FireServer(A_1)
+end
+local mouse = game.Players.LocalPlayer:GetMouse()
+mouse.KeyDown:Connect(function(k)
+	if k==Enum.KeyCode.C then
+		CreateSound(616593932)
+		local Anim = Instance.new("Animation")
+		Anim.AnimationId = "rbxassetid://4929669003"
+		local k = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+		k:Play()
+		k:AdjustSpeed(2)
+		talk("MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDA MUDAAAAA")
+		for i = 1,24 do
+			wait(0.5)
+			spawn(function()
+				wait(0.1)
+				local music = Instance.new("Sound",game.Players.LocalPlayer.Backpack)
+				music.Looped = false
+				music.Volume = 10
+				music.TimePosition = 0
+				music.Playing = true
+				music.PlaybackSpeed = 1
+				print("fucking this person up worked wow") 
+				debounce = false
+				CreateSound(6191764144)
+				k:Play()
+				k:AdjustSpeed(1)
+				local args = {
+					[1] = getrenv()._G.Pass,
+					[2] = game:service("Players").LocalPlayer.Backpack.Main.LockOnScript.LockOn.Value,
+					[3] = {
+						["HitTime"] = 0.9,
+						["Type"] = "Normal",
+						["HitEffect"] = "HeavyHitEffect",
+						["HurtAnimation"] = game:GetService("ReplicatedStorage").Animations.HurtAnimations.Knockback1,
+
+						["Sound"] = game:GetService("ReplicatedStorage").Sounds.Kick,
+						["Damage"] = 1
+					}
+				}
+
+				game:GetService("ReplicatedStorage").Remotes.Damage:InvokeServer(unpack(args))
+			end)
+		end --4820768545
+	end
+end)
